@@ -9,8 +9,8 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-int coordinateX = -6;
-int coordinateY = -6;
+int coordinateX = 4;
+int coordinateY = 4;
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -36,12 +36,22 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
             timerBall -> Enabled = false;
             ball -> Visible = false;
         }
+        if (ball -> Top - ball -> Height/2 > paddle1 -> Top && ball -> Top + ball -> Height/2 < paddle1 -> Top + paddle1 -> Height &&
+            ball -> Left < paddle1 -> Left + paddle1 -> Width)
+            {
+                 if (coordinateX < 0) coordinateX = -coordinateX;
+            }
         //skucha gracz2
         if (ball -> Left >= paddle2 -> Left + paddle2 -> Width +15)
         {
            timerBall -> Enabled = false;
            ball -> Visible = false;
         }
+        if (ball -> Top - ball -> Height/2 > paddle2 -> Top && ball -> Top + ball -> Height/2 < paddle2 -> Top + paddle2 -> Height &&
+            ball -> Left + ball -> Width > paddle2 -> Left)
+            {
+                 if (coordinateX > 0) coordinateX = -coordinateX;
+            }
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::turnUp1Timer(TObject *Sender)

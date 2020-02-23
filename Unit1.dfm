@@ -1,10 +1,12 @@
 object Form1: TForm1
-  Left = 252
-  Top = 264
-  Width = 1305
-  Height = 673
+  Left = 679
+  Top = 302
+  Width = 1152
+  Height = 369
   Caption = 'Form1'
   Color = clBtnFace
+  UseDockManager = True
+  DockSite = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -18,14 +20,14 @@ object Form1: TForm1
   object backGround: TShape
     Left = 0
     Top = 0
-    Width = 1289
-    Height = 634
+    Width = 1136
+    Height = 330
     Align = alClient
     Brush.Color = clGray
   end
   object ball: TImage
-    Left = 696
-    Top = 272
+    Left = 768
+    Top = 208
     Width = 32
     Height = 32
     AutoSize = True
@@ -132,8 +134,8 @@ object Form1: TForm1
     Transparent = True
   end
   object paddle1: TImage
-    Left = 184
-    Top = 288
+    Left = 192
+    Top = 192
     Width = 20
     Height = 100
     AutoSize = True
@@ -331,8 +333,8 @@ object Form1: TForm1
     Transparent = True
   end
   object paddle2: TImage
-    Left = 1040
-    Top = 256
+    Left = 992
+    Top = 176
     Width = 20
     Height = 100
     AutoSize = True
