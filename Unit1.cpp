@@ -9,9 +9,21 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-int coordinateX = -6;
-int coordinateY = -6;
+int coordinateX = -8;
+int coordinateY = -8;
+int numberStrokes;
+int numberWin1, numberWin2;
 
+void showResults()
+{
+Form1 -> Label2 -> Caption = "Iloœæ odbiæ: " + IntToStr(numberStrokes);
+Form1 -> Label3 -> Caption = IntToStr(numberWin1) + " : " + IntToStr(numberWin2);
+Form1 ->  Button1 ->  Visible = true;
+Form1 ->  Button2 ->  Visible = true;
+Form1 ->  Label2 ->  Visible = true;
+Form1 ->  Label3 ->  Visible = true;
+Form1 ->  Label4 ->  Visible = true;
+}
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -32,46 +44,51 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
 
         //odbicie paletka gracz 1
          if (ball -> Left + coordinateX < paddle1 -> Left + paddle1 -> Width)
+         {
                 if (ball -> Top + ball -> Height >= paddle1 -> Top &&
                 paddle1 -> Top + paddle1 -> Height >= ball -> Top)
-                        if (coordinateX < 0) coordinateX = -coordinateX;
-         else  //przegrana
-         {
-                timerBall -> Enabled = false;
-                ball -> Visible = false;
+                {
+                        if (coordinateX < 0)
+                        {
+                        coordinateX = -coordinateX;
+                        numberStrokes++;
+                        if (numberStrokes % 5 == 0)
+                                coordinateX  +=2;
+                        }
+                }
+                else  //przegrana
+                {
+                        timerBall -> Enabled = false;
+                        ball -> Visible = false;
+                        numberWin2++;
+                        Button2 -> Caption = "Nastêpna runda >";
+                        Label4 -> Caption = "Punkt dla gracza prawego >";
+                        showResults();
+                }
          }
 
-        /*if (ball -> Left <= paddle1 -> Left - 15)
-        {
-            timerBall -> Enabled = false;
-            ball -> Visible = false;
-        }
-        else if (ball -> Top - ball -> Height/2 > paddle1 -> Top && ball -> Top + ball -> Height/2 < paddle1 -> Top + paddle1 -> Height &&
-            ball -> Left < paddle1 -> Left + paddle1 -> Width)
-            {
-                 if (coordinateX < 0) coordinateX = -coordinateX;
-            }*/
 
         //odbicie paletka gracz 2
         if (ball -> Left + ball -> Width +coordinateX > paddle2 -> Left)
+        {
                 if (ball -> Top + ball -> Height >= paddle2 -> Top &&
                 paddle2 -> Top + paddle2 -> Height >= ball ->Top)
-                      if (coordinateX > 0) coordinateX = -coordinateX;
-         else  //przegrana
-         {
-                timerBall -> Enabled = false;
-                ball -> Visible = false;
-         }
-        /*if (ball -> Left >= paddle2 -> Left + paddle2 -> Width +15)
-        {
-           timerBall -> Enabled = false;
-           ball -> Visible = false;
+                      if (coordinateX > 0)
+                      {
+                      coordinateX = -coordinateX;
+                      numberStrokes++;
+                      }
+                else  //przegrana
+                {
+                         timerBall -> Enabled = false;
+                         ball -> Visible = false;
+                         numberWin1++;
+                         Button2 -> Caption = "< Nastêpna runda";
+                         Label4 -> Caption = "< Punkt dla gracza lewego";
+                         showResults();
+                }
         }
-        else if (ball -> Top - ball -> Height/2 > paddle2 -> Top && ball -> Top + ball -> Height/2 < paddle2 -> Top + paddle2 -> Height &&
-        ball -> Left + ball -> Width +6 > paddle2 -> Left)
-            {
-                 if (coordinateX > 0) coordinateX = -coordinateX;
-            }   */
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::turnUp1Timer(TObject *Sender)
@@ -112,3 +129,76 @@ void __fastcall TForm1::turnDown2Timer(TObject *Sender)
     if (paddle2 -> Top + paddle2 -> Height + 5 < backGround -> Height) paddle2 -> Top += 10;
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+        if (Sender == Button1)
+        {
+                if (Button2 -> Visible == true)
+                {
+                        if (Application -> MessageBox ( "Czy na pewno chcesz zacz¹æ od nowa?", "PotwierdŸ",
+                        MB_YESNO | MB_ICONQUESTION) == IDYES)
+                        {
+                                ball -> Left = 650;
+                                ball -> Top = 250;
+                                numberStrokes = 0;
+                                numberWin1 = 0;
+                                numberWin2 = 0;
+
+                                ball -> Visible = true;
+                                coordinateX = -8;
+                                coordinateY = -8;
+                                Button1 -> Visible = false;
+                                Button2 -> Visible = false;
+
+                                Label1 -> Visible = false;
+                                Label2 -> Visible = false;
+                                Label3 -> Visible = false;
+                                Label4 -> Visible = false;
+                                timerBall -> Enabled = true;
+                        }
+                }
+                else
+                {
+                        ball -> Left = 650;
+                        ball -> Top = 250;
+                        numberStrokes = 0;
+                        numberWin1 = 0;
+                        numberWin2 = 0;
+
+                        ball -> Visible = true;
+                        coordinateX = -8;
+                        coordinateY = -8;
+                        Button1 -> Visible = false;
+                        Button2 -> Visible = false;
+
+                        Label1 -> Visible = false;
+                        Label2 -> Visible = false;
+                        Label3 -> Visible = false;
+                        Label4 -> Visible = false;
+                        timerBall -> Enabled = true;
+                }
+        }
+        else if (Sender == Button2)
+        {
+           ball -> Left = 650;
+           ball -> Top = 250;
+           numberStrokes = 0;
+           coordinateX = -6;
+           coordinateY = -6;
+
+           ball -> Visible = true;
+
+           Button1 -> Visible = false;
+           Button2 -> Visible = false;
+
+           Label1 -> Visible = false;
+           Label2 -> Visible = false;
+           Label3 -> Visible = false;
+           Label4 -> Visible = false;
+           timerBall -> Enabled = true;
+        }
+
+}
+//---------------------------------------------------------------------------
+
+

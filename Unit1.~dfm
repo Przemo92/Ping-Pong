@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 679
   Top = 302
   Width = 1152
-  Height = 369
+  Height = 278
   Caption = 'Form1'
   Color = clBtnFace
   UseDockManager = True
@@ -21,13 +21,13 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 1136
-    Height = 330
+    Height = 239
     Align = alClient
     Brush.Color = clGray
   end
   object ball: TImage
-    Left = 768
-    Top = 208
+    Left = 352
+    Top = 104
     Width = 32
     Height = 32
     AutoSize = True
@@ -135,7 +135,7 @@ object Form1: TForm1
   end
   object paddle1: TImage
     Left = 192
-    Top = 192
+    Top = 32
     Width = 20
     Height = 100
     AutoSize = True
@@ -333,8 +333,8 @@ object Form1: TForm1
     Transparent = True
   end
   object paddle2: TImage
-    Left = 992
-    Top = 176
+    Left = 856
+    Top = 64
     Width = 20
     Height = 100
     AutoSize = True
@@ -541,15 +541,15 @@ object Form1: TForm1
     Enabled = False
     Interval = 20
     OnTimer = turnUp1Timer
-    Left = 64
-    Top = 160
+    Left = 16
+    Top = 104
   end
   object turnDown1: TTimer
     Enabled = False
     Interval = 20
     OnTimer = turnDown1Timer
-    Left = 64
-    Top = 200
+    Left = 8
+    Top = 144
   end
   object turnUp2: TTimer
     Enabled = False
