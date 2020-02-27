@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 626
-  Top = 0
-  Width = 928
-  Height = 466
+  Left = 679
+  Top = 302
+  Width = 1152
+  Height = 278
   Caption = 'Form1'
   Color = clBtnFace
   UseDockManager = True
@@ -20,14 +20,14 @@ object Form1: TForm1
   object backGround: TShape
     Left = 0
     Top = 0
-    Width = 912
-    Height = 427
+    Width = 1136
+    Height = 239
     Align = alClient
     Brush.Color = clGray
   end
   object ball: TImage
-    Left = 712
-    Top = 256
+    Left = 352
+    Top = 104
     Width = 32
     Height = 32
     AutoSize = True
@@ -134,8 +134,8 @@ object Form1: TForm1
     Transparent = True
   end
   object paddle1: TImage
-    Left = 96
-    Top = 216
+    Left = 192
+    Top = 32
     Width = 20
     Height = 100
     AutoSize = True
@@ -333,8 +333,8 @@ object Form1: TForm1
     Transparent = True
   end
   object paddle2: TImage
-    Left = 776
-    Top = 192
+    Left = 856
+    Top = 64
     Width = 20
     Height = 100
     AutoSize = True
@@ -531,131 +531,38 @@ object Form1: TForm1
       17291E17291E17291E17291E17291EFFFFFF}
     Transparent = True
   end
-  object Label1: TLabel
-    Left = 232
-    Top = 16
-    Width = 448
-    Height = 57
-    Alignment = taCenter
-    AutoSize = False
-    Caption = 'Zagrajmy w PingPonga!'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -40
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 232
-    Top = 240
-    Width = 449
-    Height = 49
-    Alignment = taCenter
-    AutoSize = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -32
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    Visible = False
-  end
-  object Label3: TLabel
-    Left = 232
-    Top = 184
-    Width = 449
-    Height = 49
-    Alignment = taCenter
-    AutoSize = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -32
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    Visible = False
-  end
-  object Label4: TLabel
-    Left = 232
-    Top = 128
-    Width = 449
-    Height = 49
-    Alignment = taCenter
-    AutoSize = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -32
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    Visible = False
-  end
-  object Button1: TButton
-    Left = 232
-    Top = 352
-    Width = 449
-    Height = 49
-    Cursor = crHandPoint
-    Caption = 'Nowa gra'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -32
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 0
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 232
-    Top = 296
-    Width = 449
-    Height = 49
-    Cursor = crHandPoint
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGreen
-    Font.Height = -32
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 1
-    Visible = False
-    OnClick = Button1Click
-  end
   object timerBall: TTimer
-    Enabled = False
     Interval = 15
     OnTimer = timerBallTimer
-    Left = 8
-    Top = 8
+    Left = 72
+    Top = 64
   end
   object turnUp1: TTimer
     Enabled = False
     Interval = 20
     OnTimer = turnUp1Timer
-    Left = 40
-    Top = 40
+    Left = 16
+    Top = 104
   end
   object turnDown1: TTimer
     Enabled = False
     Interval = 20
     OnTimer = turnDown1Timer
-    Left = 40
-    Top = 72
+    Left = 8
+    Top = 144
   end
   object turnUp2: TTimer
     Enabled = False
     Interval = 20
     OnTimer = turnUp2Timer
-    Left = 824
-    Top = 24
+    Left = 1048
+    Top = 88
   end
   object turnDown2: TTimer
     Enabled = False
     Interval = 20
     OnTimer = turnDown2Timer
-    Left = 824
-    Top = 56
+    Left = 1048
+    Top = 128
   end
 end
