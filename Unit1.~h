@@ -22,6 +22,12 @@ __published:	// IDE-managed Components
         TTimer *turnDown1;
         TTimer *turnUp2;
         TTimer *turnDown2;
+        TLabel *Label1;
+        TButton *Button1;
+        TButton *Button2;
+        TLabel *Label2;
+        TLabel *Label3;
+        TLabel *Label4;
         void __fastcall timerBallTimer(TObject *Sender);
         void __fastcall turnUp1Timer(TObject *Sender);
         void __fastcall turnDown1Timer(TObject *Sender);
@@ -31,6 +37,7 @@ __published:	// IDE-managed Components
           TShiftState Shift);
         void __fastcall turnUp2Timer(TObject *Sender);
         void __fastcall turnDown2Timer(TObject *Sender);
+        void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);
