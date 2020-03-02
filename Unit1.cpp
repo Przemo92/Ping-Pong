@@ -112,8 +112,6 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
                         showResults();
                 }
          }
-
-
         //odbicie paletka gracz 2
         if (ball -> Left + ball -> Width + coordinateX > paddle2 -> Left)
         {
@@ -194,7 +192,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                                 numberStrokes = 0;
                                 numberWin1 = 0;
                                 numberWin2 = 0;
-
                         }
                 }
                 else

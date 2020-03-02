@@ -9,8 +9,8 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-int coordinateX = -8;
-int coordinateY = -8;
+int coordinateX = -6;
+int coordinateY = -6;
 int numberStrokes;
 int numberWin1, numberWin2;
 
@@ -24,10 +24,53 @@ Form1 ->  Label2 ->  Visible = true;
 Form1 ->  Label3 ->  Visible = true;
 Form1 ->  Label4 ->  Visible = true;
 }
+void setStartingParameters()
+{
+ Form1 -> paddle1 -> Top = Form1 -> backGround -> Height/2 - Form1 -> paddle1 -> Height/2;
+ Form1 -> paddle1 -> Left = 50;
+ Form1 -> paddle2 -> Top = Form1 -> backGround -> Height/2 - Form1 -> paddle2 -> Height/2;
+ Form1 -> paddle2 -> Left = Form1 -> backGround -> Width - Form1 -> paddle2 -> Width - 50;
+ Form1 -> ball -> Top = Form1 -> backGround -> Height/2;
+ Form1 -> ball -> Left = Form1 -> backGround -> Width/2;
+
+ Form1 -> ball -> Visible = true;
+ coordinateX = -6;
+ coordinateY = -6;
+
+ Form1 -> Button1 -> Visible = false;
+ Form1 -> Button2 -> Visible = false;
+ Form1 -> Label1 -> Visible = false;
+ Form1 -> Label2 -> Visible = false;
+ Form1 -> Label3 -> Visible = false;
+ Form1 -> Label4 -> Visible = false;
+ Form1 -> timerBall -> Enabled = true;
+
+ Form1 -> Label2 -> Top = Form1 -> backGround ->  Height/2 - Form1 -> Label2 -> Height/2;
+ Form1 -> Label2 -> Left = Form1 -> backGround ->  Width/2 - Form1 -> Label2 -> Width/2;
+ Form1 -> Button2 -> Top = Form1 -> Label2 -> Top + Form1 -> Label2 -> Height + 10;
+ Form1 -> Button2 -> Left = Form1 -> Label2 -> Left;
+ Form1 -> Button1 -> Top = Form1 -> Button2 -> Top + Form1 -> Button2 -> Height + 10;
+ Form1 -> Button1 -> Left = Form1 -> Button2 -> Left;
+ Form1 -> Label3 -> Top = Form1 -> Label2 -> Top - Form1 -> Label2 -> Height - 10;
+ Form1 -> Label3 -> Left = Form1 -> Label2 -> Left;
+ Form1 -> Label4 -> Top = Form1 -> Label3 -> Top - Form1 -> Label3 -> Height - 10;
+ Form1 -> Label4 -> Left = Form1 -> Label3 -> Left;
+}
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
+   ShowMessage("Witaj w grze PingPong.\n"
+                "\n"
+                "Lewy gracz steruje wciskaj¹c klawisze A oraz Z. \n"
+                "Prawy gracz steruje wciskaj¹c strza³ki do góry i w dó³.\n"
+                "\n"
+                "Dla urozmaicenia zabawy:\n"
+                "Kiedy odbijesz pi³kê na œrodku plateki, wówczas zmniejsz jej k¹t odbicia i pi³ka przyœpieszy.\n"
+                "Im wiecej odbiæ paletk¹, tym szybciej przemieszcza siê pi³ka.\n"
+                "Mo¿esz dowolnie zmienia pole gry.\n"
+                "\n"
+                "Mi³ej zabawy!\n");
 }
 //---------------------------------------------------------------------------
 
@@ -53,7 +96,10 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
                         coordinateX = -coordinateX;
                         numberStrokes++;
                         if (numberStrokes % 5 == 0)
-                                coordinateX  +=2;
+                                coordinateX++;
+                        else if (ball -> Top + ball -> Height/2 >= paddle1 -> Top + paddle1 -> Height/2 - 10 &&
+                                ball -> Top <= paddle1 -> Top + paddle1 -> Height/2 + 10)
+                                coordinateX+=2;
                         }
                 }
                 else  //przegrana
@@ -69,7 +115,7 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
 
 
         //odbicie paletka gracz 2
-        if (ball -> Left + ball -> Width +coordinateX > paddle2 -> Left)
+        if (ball -> Left + ball -> Width + coordinateX > paddle2 -> Left)
         {
                 if (ball -> Top + ball -> Height >= paddle2 -> Top &&
                 paddle2 -> Top + paddle2 -> Height >= ball ->Top)
@@ -77,6 +123,11 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
                       {
                       coordinateX = -coordinateX;
                       numberStrokes++;
+                      if (numberStrokes % 5 == 0)
+                                coordinateX--;
+                      else if (ball -> Top + ball -> Height/2 >= paddle1 -> Top + paddle1 -> Height/2 - 10 &&
+                                ball -> Top <= paddle1 -> Top + paddle1 -> Height/2 + 10)
+                                coordinateX-=2;
                       }
                 else  //przegrana
                 {
@@ -138,64 +189,28 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                         if (Application -> MessageBox ( "Czy na pewno chcesz zacz¹æ od nowa?", "PotwierdŸ",
                         MB_YESNO | MB_ICONQUESTION) == IDYES)
                         {
-                                ball -> Left = 650;
-                                ball -> Top = 250;
+                                setStartingParameters();
+
                                 numberStrokes = 0;
                                 numberWin1 = 0;
                                 numberWin2 = 0;
 
-                                ball -> Visible = true;
-                                coordinateX = -8;
-                                coordinateY = -8;
-                                Button1 -> Visible = false;
-                                Button2 -> Visible = false;
-
-                                Label1 -> Visible = false;
-                                Label2 -> Visible = false;
-                                Label3 -> Visible = false;
-                                Label4 -> Visible = false;
-                                timerBall -> Enabled = true;
                         }
                 }
                 else
                 {
-                        ball -> Left = 650;
-                        ball -> Top = 250;
+                        setStartingParameters();
+
                         numberStrokes = 0;
                         numberWin1 = 0;
                         numberWin2 = 0;
-
-                        ball -> Visible = true;
-                        coordinateX = -8;
-                        coordinateY = -8;
-                        Button1 -> Visible = false;
-                        Button2 -> Visible = false;
-
-                        Label1 -> Visible = false;
-                        Label2 -> Visible = false;
-                        Label3 -> Visible = false;
-                        Label4 -> Visible = false;
-                        timerBall -> Enabled = true;
                 }
         }
         else if (Sender == Button2)
         {
-           ball -> Left = 650;
-           ball -> Top = 250;
+           setStartingParameters();
+
            numberStrokes = 0;
-           coordinateX = -6;
-           coordinateY = -6;
-
-           ball -> Visible = true;
-
-           Button1 -> Visible = false;
-           Button2 -> Visible = false;
-
-           Label1 -> Visible = false;
-           Label2 -> Visible = false;
-           Label3 -> Visible = false;
-           Label4 -> Visible = false;
-           timerBall -> Enabled = true;
         }
 
 }
