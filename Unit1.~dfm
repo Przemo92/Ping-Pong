@@ -550,7 +550,7 @@ object Form1: TForm1
     Left = 232
     Top = 240
     Width = 449
-    Height = 49
+    Height = 50
     Alignment = taCenter
     AutoSize = False
     Font.Charset = DEFAULT_CHARSET
@@ -565,7 +565,7 @@ object Form1: TForm1
     Left = 232
     Top = 184
     Width = 449
-    Height = 49
+    Height = 50
     Alignment = taCenter
     AutoSize = False
     Font.Charset = DEFAULT_CHARSET
@@ -580,7 +580,7 @@ object Form1: TForm1
     Left = 232
     Top = 128
     Width = 449
-    Height = 49
+    Height = 50
     Alignment = taCenter
     AutoSize = False
     Font.Charset = DEFAULT_CHARSET
@@ -595,7 +595,7 @@ object Form1: TForm1
     Left = 232
     Top = 352
     Width = 449
-    Height = 49
+    Height = 50
     Cursor = crHandPoint
     Caption = 'Nowa gra'
     Font.Charset = DEFAULT_CHARSET
@@ -611,7 +611,7 @@ object Form1: TForm1
     Left = 232
     Top = 296
     Width = 449
-    Height = 49
+    Height = 50
     Cursor = crHandPoint
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGreen

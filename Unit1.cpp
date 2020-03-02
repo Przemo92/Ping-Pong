@@ -2,7 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
-
+#include "mmsystem.h"
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -16,6 +16,7 @@ int numberWin1, numberWin2;
 
 void showResults()
 {
+sndPlaySound("snd/lost-game.wav", SND_ASYNC);
 Form1 -> Label2 -> Caption = "Iloœæ odbiæ: " + IntToStr(numberStrokes);
 Form1 -> Label3 -> Caption = IntToStr(numberWin1) + " : " + IntToStr(numberWin2);
 Form1 ->  Button1 ->  Visible = true;
@@ -26,6 +27,8 @@ Form1 ->  Label4 ->  Visible = true;
 }
 void setStartingParameters()
 {
+ sndPlaySound("snd/sound-game.wav", SND_ASYNC);
+
  Form1 -> paddle1 -> Top = Form1 -> backGround -> Height/2 - Form1 -> paddle1 -> Height/2;
  Form1 -> paddle1 -> Left = 50;
  Form1 -> paddle2 -> Top = Form1 -> backGround -> Height/2 - Form1 -> paddle2 -> Height/2;
@@ -68,7 +71,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
                 "Dla urozmaicenia zabawy:\n"
                 "Kiedy odbijesz pi³kê na œrodku plateki, wówczas zmniejsz jej k¹t odbicia i pi³ka przyœpieszy.\n"
                 "Im wiecej odbiæ paletk¹, tym szybciej przemieszcza siê pi³ka.\n"
-                "Mo¿esz dowolnie zmienia pole gry.\n"
+                "Mo¿esz dowolnie zmieniaæ pole gry.\n"
                 "\n"
                 "Mi³ej zabawy!\n");
 }
@@ -93,13 +96,13 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
                 {
                         if (coordinateX < 0)
                         {
-                        coordinateX = -coordinateX;
-                        numberStrokes++;
-                        if (numberStrokes % 5 == 0)
-                                coordinateX++;
-                        else if (ball -> Top + ball -> Height/2 >= paddle1 -> Top + paddle1 -> Height/2 - 10 &&
-                                ball -> Top <= paddle1 -> Top + paddle1 -> Height/2 + 10)
-                                coordinateX+=2;
+                                coordinateX = -coordinateX;
+                                numberStrokes++;
+                                if (numberStrokes % 5 == 0)
+                                         coordinateX++;
+                                else if (ball -> Top + ball -> Height/2 >= paddle1 -> Top + paddle1 -> Height/2 - 10 &&
+                                        ball -> Top <= paddle1 -> Top + paddle1 -> Height/2 + 10)
+                                        coordinateX+=2;
                         }
                 }
                 else  //przegrana
@@ -112,8 +115,6 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
                         showResults();
                 }
          }
-
-
         //odbicie paletka gracz 2
         if (ball -> Left + ball -> Width + coordinateX > paddle2 -> Left)
         {
@@ -121,11 +122,13 @@ void __fastcall TForm1::timerBallTimer(TObject *Sender)
                 paddle2 -> Top + paddle2 -> Height >= ball ->Top)
                       if (coordinateX > 0)
                       {
-                      coordinateX = -coordinateX;
-                      numberStrokes++;
-                      if (numberStrokes % 5 == 0)
+                        coordinateX = -coordinateX;
+                        numberStrokes++;
+                        //przyspieszanie pilki co 5 odbic
+                        if (numberStrokes % 5 == 0)
                                 coordinateX--;
-                      else if (ball -> Top + ball -> Height/2 >= paddle1 -> Top + paddle1 -> Height/2 - 10 &&
+                        //przyspieszanie pilki na srodku paletki
+                        else if (ball -> Top + ball -> Height/2 >= paddle1 -> Top + paddle1 -> Height/2 - 10 &&
                                 ball -> Top <= paddle1 -> Top + paddle1 -> Height/2 + 10)
                                 coordinateX-=2;
                       }
@@ -194,7 +197,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                                 numberStrokes = 0;
                                 numberWin1 = 0;
                                 numberWin2 = 0;
-
                         }
                 }
                 else
@@ -215,5 +217,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 }
 //---------------------------------------------------------------------------
+
+
 
 
